@@ -29,16 +29,15 @@ export default function EstimateCard({
     onApprove,
     onDecline,
     onConvert,
-    onRevise,
-}:
-    ReadOnly = EstimateCardProps) {
+    onRevise
+}: EstimateCardProps) {
     const getStatusColor = (status: Estimate['status']) => {
-        const colorMap = {
-            pending: 'text-yellow-500',
-            approved: 'text-green-500',
-            declined: 'text-red-500',
-        };
-        return colorMap[status] || '';
+        switch (status) {
+            case 'pending': return 'text-yellow-500';
+            case 'approved': return 'text-green-500';
+            case 'declined': return 'text-red-500';
+            default: return '';
+        }
     };
 
     return (
@@ -54,7 +53,7 @@ export default function EstimateCard({
                     {estimate.items.map((item) => (
                         <div key={item.id} className="flex items-center justify-between">
                             <div>{item.name}</div>
-                            <div>${item.price?.toFixed(2) ?? '0.00'}</div>
+                            <div>${item.price.toFixed(2)}</div>
                         </div>
                     ))}
                 </div>
@@ -62,35 +61,23 @@ export default function EstimateCard({
             <CardFooter>
                 <div className="flex items-center justify-between w-full">
                     <div className="font-semibold">Total</div>
-                    <div className="text-2xl font-bold">${estimate.total?.toFixed(2) ?? '0.00'}</div>
+                    <div className="text-2xl font-bold">${estimate.total.toFixed(2)}</div>
                 </div>
                 <div className="flex gap-2 mt-4">
                     {estimate.status === 'pending' && (
                         <>
-                            <Button size="sm" onClick={() => onApprove(estimate._id)}>
-                                Approve
-                            </Button>
-                            <Button
-                                size="sm"
-                                variant="secondary"
-                                onClick={() => onDecline(estimate._id)}
-                            >
-                                Decline
-                            </Button>
+                            <Button size="sm" onClick={() => onApprove(estimate._id)}>Approve</Button>
+                            <Button size="sm" variant="secondary" onClick={() => onDecline(estimate._id)}>Decline</Button>
                         </>
                     )}
                     {estimate.status === 'approved' && (
-                        <Button size="sm" onClick={() => onConvert(estimate._id)}>
-                            Convert to Invoice
-                        </Button>
+                        <Button size="sm" onClick={() => onConvert(estimate._id)}>Convert to Invoice</Button>
                     )}
                     {estimate.status === 'declined' && (
-                        <Button size="sm" onClick={() => onRevise(estimate._id)}>
-                            Revise
-                        </Button>
+                        <Button size="sm" onClick={() => onRevise(estimate._id)}>Revise</Button>
                     )}
                 </div>
             </CardFooter>
         </Card>
-    )
+    );
 }

@@ -79,10 +79,10 @@ function Dashboard() {
             title="Transactions"
             description="View and manage your financial transactions."
             stats={[
-              { label: "Deposits", value: `$${transactions.deposits.toFixed(2)}` },
-              { label: "Payments", value: `$${transactions.payments.toFixed(2)}` },
-              { label: "Refunds", value: `$${transactions.refunds.toFixed(2)}` },
-              { label: "Total", value: `$${transactions.total !== undefined && transactions.total !== null ? `${transactions.total.toFixed(2)}` : '0.00'}` }
+              { label: "Deposits", value: '$${transactions.deposits.toFixed(2)}' },
+              { label: "Payments", value: '$${transactions.payments.toFixed(2)}' },
+              { label: "Refunds", value: '$${transactions.refunds.toFixed(2)}' },
+              { label: "Total", value: `$${transactions.total !== undefined && transactions.total !== null ? transactions.total.toFixed(2) : '0.00'} ` }
             ]}
             action="View Transactions"
           />

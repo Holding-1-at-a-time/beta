@@ -1,14 +1,16 @@
 import { query, mutation } from "./_generated/server";
 import { v } from "convex/values";
 
-export const list = query({
+export const listEstimates = query({
     args: {},
     handler: async (ctx) => {
-        return await ctx.db.query("estimates").order("desc").take(100);
+        return await ctx.db.query("estimates")
+            .order("desc")
+            .take(100);
     },
 });
 
-export const create = mutation({
+export const createEstimate = mutation({
     args: {
         number: v.string(),
         items: v.array(v.object({
@@ -28,7 +30,7 @@ export const create = mutation({
     },
 });
 
-export const updateStatus = mutation({
+export const updateEstimateStatus = mutation({
     args: {
         id: v.id("estimates"),
         status: v.union(v.literal("approved"), v.literal("declined")),
@@ -36,4 +38,4 @@ export const updateStatus = mutation({
     handler: async (ctx, args) => {
         return await ctx.db.patch(args.id, { status: args.status });
     },
-});
+})

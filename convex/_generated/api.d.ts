@@ -17,6 +17,7 @@ import type {
 import type * as appointments from "../appointments.js";
 import type * as clients from "../clients.js";
 import type * as estimates from "../estimates.js";
+import type * as followUp from "../followUp.js";
 import type * as invoices from "../invoices.js";
 import type * as transactions from "../transactions.js";
 
@@ -32,6 +33,7 @@ declare const fullApi: ApiFromModules<{
   appointments: typeof appointments;
   clients: typeof clients;
   estimates: typeof estimates;
+  followUp: typeof followUp;
   invoices: typeof invoices;
   transactions: typeof transactions;
 }>;

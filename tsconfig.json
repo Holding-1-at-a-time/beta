@@ -1,13 +1,19 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "ESNext",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
+    "extendedDiagnostics": true,
     "esModuleInterop": true,
     "module": "esnext",
+    "moduleDetection": "auto",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -19,9 +25,23 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "app/(root)/**/*.ts",
+    "app/(root)/**/*.tsx",
+    "app/(auth)/**/*.ts",
+    "app/(auth)/**/*.tsx",
+    "app/(root)/page.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

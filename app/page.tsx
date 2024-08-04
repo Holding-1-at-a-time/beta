@@ -1,3 +1,4 @@
+// admin dashboard/portal
 // File: app/page.tsx
 "use client";
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../convex/_generated/api";
-import EstimateCard from './EstimateCard';
 
 export default function EstimatesList() {
     const estimates = useQuery(api.estimates.list);
@@ -23,22 +22,4 @@ export default function EstimatesList() {
     const handleRevise = (id: string) => {
         updateStatus({ id, status: 'revised' });
     };
-    };
-
-    if (!estimates) return <div>Loading...</div>;
-
-    return (
-        <div className="space-y-4">
-            {estimates.map(estimate => (
-                <EstimateCard
-                    key={estimate._id}
-                    estimate={estimate}
-                    onApprove={handleApprove}
-                    onDecline={handleDecline}
-                    onConvert={handleConvert}
-                    onRevise={handleRevise}
-                />
-            ))}
-        </div>
-);
-export default function EstimatesList();
+}

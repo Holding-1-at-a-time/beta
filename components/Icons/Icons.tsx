@@ -21,8 +21,14 @@ export const NotificationIcon = (props: React.SVGProps<SVGSVGElement>) => (
         <path d="M14 21h-4a2 2 0 0 0 4 0z" />
     </svg>
 );
-interface IconProps extends React.SVGProps<SVGSVGElement> { }
-
+interface IconProps extends React.SVGProps<SVGSVGElement> {
+    size?: string;
+    color?: string;
+    className?: string;
+    style?: React.CSSProperties;
+    title?: string;
+    onClick?: React.MouseEventHandler<SVGSVGElement>;
+}
 
 export const BellIcon: React.FC<IconProps> = (props) => (
     <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

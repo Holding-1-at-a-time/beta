@@ -8,7 +8,7 @@ interface Appointment {
     date: string;
     service: string;
     client: string;
-    depositPaid: boolean;
+    depositPaidCount: boolean;
 }
 
 interface AppointmentsCardProps {

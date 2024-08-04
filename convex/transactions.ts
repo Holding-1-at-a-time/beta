@@ -22,7 +22,7 @@ const createTransactions = mutation({
     },
 });
 
-const transactions_getSummary = query({
+const getSummary = query({
     args: {},
     handler: async (ctx) => {
         const transactions = await ctx.db.query("transactions").collect();
@@ -34,8 +34,4 @@ const transactions_getSummary = query({
     },
 });
 
-export {
-    transactions_getSummary,
-    createTransactions,
-    listTransactions,
-};
+export { getSummary, createTransactions, listTransactions };

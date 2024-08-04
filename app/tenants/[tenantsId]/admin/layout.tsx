@@ -3,7 +3,7 @@ import { UserButton } from "@clerk/nextjs";
 import Link from 'next/link';
 import { ReceiptIcon } from '@/components/Icons/Icons';
 
-export default function AdminLayout({ children }: ReadOnly = { children: React.ReactNode }) {
+export default function AdminLayout({ children }: Readonly = { children: React.ReactNode }) {
     return (
         <div className="flex flex-col min-h-screen font-geistSans">
             <header className="bg-[#00AE98] text-primary-foreground py-4 px-6 shadow-lg">

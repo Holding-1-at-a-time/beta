@@ -1,0 +1,6 @@
+{
+    "sonarlint.connectedMode.project": {
+        "connectionId": "beta",
+        "projectKey": "Holding-1-at-a-time_beta"
+    }
+}

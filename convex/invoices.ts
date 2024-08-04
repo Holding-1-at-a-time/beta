@@ -1,14 +1,14 @@
 import { query, mutation } from "./_generated/server";
 import { v } from "convex/values";
 
-export const list = query({
+export const listInvoices = query({
     args: {},
     handler: async (ctx) => {
         return await ctx.db.query("invoices").order("desc").take(100);
     },
 });
 
-export const create = mutation({
+export const createInvoices = mutation({
     args: {
         number: v.string(),
         items: v.array(v.object({
@@ -29,7 +29,7 @@ export const create = mutation({
     },
 });
 
-export const updateStatus = mutation({
+export const updateInvoiceStatus = mutation({
     args: {
         id: v.id("invoices"),
         status: v.union(v.literal("paid"), v.literal("overdue")),

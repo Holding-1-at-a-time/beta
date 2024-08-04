@@ -1,14 +1,14 @@
 import { query, mutation } from "./_generated/server";
 import { v } from "convex/values";
 
-export const list = query({
+const listTransactions = query({
     args: {},
     handler: async (ctx) => {
         return await ctx.db.query("transactions").order("desc").take(100);
     },
 });
 
-export const create = mutation({
+const createTransactions = mutation({
     args: {
         type: v.union(v.literal("deposit"), v.literal("payment"), v.literal("refund")),
         amount: v.number(),
@@ -22,7 +22,7 @@ export const create = mutation({
     },
 });
 
-export const summary = query({
+const transactions_getSummary = query({
     args: {},
     handler: async (ctx) => {
         const transactions = await ctx.db.query("transactions").collect();
@@ -33,3 +33,9 @@ export const summary = query({
         }, { deposit: 0, payment: 0, refund: 0, total: 0 });
     },
 });
+
+export {
+    transactions_getSummary,
+    createTransactions,
+    listTransactions,
+};

@@ -1,14 +1,14 @@
 import { query, mutation } from "./_generated/server";
 import { v } from "convex/values";
 
-export const list = query({
+export const listAppointments = query({
     args: {},
     handler: async (ctx) => {
         return await ctx.db.query("appointments").order("desc").take(100);
     },
 });
 
-export const create = mutation({
+export const createAppointments = mutation({
     args: {
         date: v.number(),
         service: v.string(),

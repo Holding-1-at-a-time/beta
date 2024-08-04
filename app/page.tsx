@@ -1,4 +1,3 @@
-// admin dashboard/portal
 // File: app/page.tsx
 "use client";
 
@@ -14,6 +13,7 @@ import AppointmentsCard from '@/components/AppointmentsCard';
 import EstimateCard from '@/components/EstimateCard';
 import InvoiceCard from '@/components/InvoiceCard';
 import { ReceiptIcon } from '@/components/Icons/Icons';
+
 export default function AdminDashboard() {
   return (
     <div>
@@ -28,10 +28,10 @@ export default function AdminDashboard() {
 }
 
 function Dashboard() {
-  const estimates = useQuery(api.estimates.list) || [];
-  const invoices = useQuery(api.invoices.list) || [];
-  const appointments = useQuery(api.appointments.list) || [];
-  const transactions = useQuery(api.transactions.summary) || { deposits: 0, payments: 0, refunds: 0, total: 0 };
+  const estimates = useQuery(api.estimates.listEstimates) || [];
+  const invoices = useQuery(api.invoices.listInvoices) || [];
+  const appointments = useQuery(api.appointments.listAppointments) || [];
+  const transactions = useQuery(api.transactions.getSummary) || { deposits: 0, payments: 0, refunds: 0, total: 0 };
 
   return (
     <div className="flex flex-col min-h-screen font-geistSans">
@@ -39,7 +39,7 @@ function Dashboard() {
         <div className="container mx-auto flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 font-geistMono font-semibold">
             <ReceiptIcon className="h-6 w-6" />
-            <span>Acme Detailing</span>
+            <span>Slick Solutions</span>
           </Link>
           <nav className="flex items-center gap-4">
             <Link href="/estimates" className="hover:underline">Estimates</Link>
@@ -80,10 +80,10 @@ function Dashboard() {
             title="Transactions"
             description="View and manage your financial transactions."
             stats={[
-              { label: "Deposits", value: '$${transactions.deposits.toFixed(2)}' },
-              { label: "Payments", value: '$${transactions.payments.toFixed(2)}' },
-              { label: "Refunds", value: '$${transactions.refunds.toFixed(2)}' },
-              { label: "Total", value: `$${transactions.total !== undefined && transactions.total !== null ? transactions.total.toFixed(2) : '0.00'} ` }
+              { label: "Deposits", value: `$${transactions.deposits.toFixed(2)}` },
+              { label: "Payments", value: `$${transactions.payments.toFixed(2)}` },
+              { label: "Refunds", value: `$${transactions.refunds.toFixed(2)}` },
+              { label: "Total", value: `$${transactions.total.toFixed(2)}` }
             ]}
             action="View Transactions"
           />

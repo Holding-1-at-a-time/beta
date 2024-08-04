@@ -23,8 +23,9 @@ export function AdminSidebar() {
             <ul className="flex flex-col py-4">
                 {navItems.map((item) => (
                     <li key={item.href}>
-                        <nextLink href={item.href}>
+                        <Link href={item.href}>
                             <a
+                                // TODO: implement The href attribute is required for an anchor to be keyboard accessible. Provide a valid, navigable address as the href value. If you cannot provide an href, but still need the element to resemble a link, use a button and change it with appropriate styles.
                                 className={cn(
                                     "flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800",
                                     pathname === item.href && "text-emerald-500 font-bold"
@@ -35,7 +36,7 @@ export function AdminSidebar() {
                                 </span>
                                 <span className="text-sm font-medium">{item.label}</span>
                             </a>
-                        </nextLink>
+                        </Link>
                     </li>
                 ))}
             </ul>

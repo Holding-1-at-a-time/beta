@@ -29,7 +29,12 @@ export default function VehicleAssessmentForm() {
             <Input {...register("make", { required: true })} placeholder="Vehicle Make" />
             <Input {...register("model", { required: true })} placeholder="Vehicle Model" />
             <Input {...register("year", { required: true })} placeholder="Year" type="number" />
-            <Input {...register("vin")} placeholder="VIN (optional)" />
+            <Input {...register("color", { required: true })} placeholder="Vehicle Color" />
+            <Input {...register("odometer", { required: true })} placeholder="Odometer" type="number" />
+            <Input {...register("licensePlate", { required: true })} placeholder="License Plate" />
+            <Input {...register("licenseState", { required: true })} placeholder="License State" />
+            <Input {...register("ownerName", { required: true })} placeholder="Owner Name" />
+            <Input {...register("vin", { required: true })} placeholder="Vehicle VIN" />
             <Select {...register("vehicleType", { required: true })}>
                 <option value="">Select Vehicle Type</option>
                 <option value="sedan">Sedan</option>
@@ -49,6 +54,17 @@ export default function VehicleAssessmentForm() {
           file:bg-violet-50 file:text-violet-700
           hover:file:bg-violet-100"
             />
+            {errors.make && <div>{errors.make.message}</div>}
+            {errors.model && <div>{errors.model.message}</div>}
+            {errors.year && <div>{errors.year.message}</div>}
+            {errors.color && <div>{errors.color.message}</div>}
+            {errors.odometer && <div>{errors.odometer.message}</div>}
+            {errors.licensePlate && <div>{errors.licensePlate.message}</div>}
+            {errors.licenseState && <div>{errors.licenseState.message}</div>}
+            {errors.ownerName && <div>{errors.ownerName.message}</div>}
+            {errors.vin && <div>{errors.vin.message}</div>}
+            {errors.vehicleType && <div>{errors.vehicleType.message}</div>}
+            {errors.condition && <div>{errors.condition.message}</div>}
             <Button type="submit">Submit Assessment</Button>
         </form>
     );

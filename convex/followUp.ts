@@ -1,5 +1,5 @@
 // File: convex/followUp.ts
-import { mutation, query } from './_generated/server';
+import { mutation } from './_generated/server';
 import { v } from 'convex/values';
 
 export const scheduleFollowUp = mutation({
@@ -10,6 +10,7 @@ export const scheduleFollowUp = mutation({
     handler: async (ctx, args) => {
         // Schedule follow-up notifications
         const followUpDates = [
+            // TODO: add 5 days before, 3 days before, 2 days before, 12 hours before, 6 hours before, 3 hours before, and 1 hour before
             new Date(args.appointmentDate).getTime() - 7 * 24 * 60 * 60 * 1000, // 1 week before
             new Date(args.appointmentDate).getTime() - 24 * 60 * 60 * 1000,     // 1 day before
         ];

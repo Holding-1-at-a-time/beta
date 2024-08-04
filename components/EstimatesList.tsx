@@ -21,7 +21,6 @@ export default function EstimatesList() {
     };
 
     const handleRevise = (id: string) => {
-        // Revise the estimate by updating its status to 'revised' in the Convex database
         updateStatus({ id, status: 'revised' });
     };
     };
@@ -41,5 +40,5 @@ export default function EstimatesList() {
                 />
             ))}
         </div>
-    );
-}
+);
+export default function EstimatesList();

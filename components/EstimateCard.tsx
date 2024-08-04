@@ -17,11 +17,11 @@ interface Estimate {
 }
 
 interface EstimateCardProps {
-    estimate: Estimate;
-    onApprove: (id: string) => void;
-    onDecline: (id: string) => void;
-    onConvert: (id: string) => void;
-    onRevise: (id: string) => void;
+   readonly estimate: Estimate;
+   readonly onApprove: (id: string) => void;
+   readonly onDecline: (id: string) => void;
+   readonly onConvert: (id: string) => void;
+   readonly onRevise: (id: string) => void;
 }
 
 export default function EstimateCard({

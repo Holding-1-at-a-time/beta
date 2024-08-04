@@ -51,13 +51,6 @@ export const sendReminder = mutation({
             subject: 'Appointment Reminder',
             text: `You have an appointment on ${args.appointmentDate}.`,
         });
-        const transport = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: 'your-email@gmail.com',
-                pass: 'your-email-password',
-            },
-        });
         await transport.sendMail({
             from: 'your-email@gmail.com',
             to: client.email,

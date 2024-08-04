@@ -10,8 +10,8 @@ export default function PricingJustificationTool({ services }) {
                 <CardTitle>Service Breakdown</CardTitle>
             </CardHeader>
             <CardContent>
-                {services.map((service, index) => (
-                    <div key={index} className="flex justify-between py-2">
+                {services.map((service) => (
+                    <div key={id} className="flex justify-between py-2">
                         <span>{service.name}</span>
                         <span>${service.price.toFixed(2)}</span>
                     </div>

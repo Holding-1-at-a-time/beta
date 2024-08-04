@@ -10,7 +10,13 @@ export const scheduleFollowUp = mutation({
     handler: async (ctx, args) => {
         // Schedule follow-up notifications
         const followUpDates = [
-            // TODO: add 5 days before, 3 days before, 2 days before, 12 hours before, 6 hours before, 3 hours before, and 1 hour before
+            new Date(args.appointmentDate).getTime() - 5 * 24 * 60 * 60 * 1000, // 5 days before
+            new Date(args.appointmentDate).getTime() - 3 * 24 * 60 * 60 * 1000, // 3 days before
+            new Date(args.appointmentDate).getTime() - 2 * 24 * 60 * 60 * 1000, // 2 days before
+            new Date(args.appointmentDate).getTime() - 12 * 60 * 60 * 1000,     // 12 hours before
+            new Date(args.appointmentDate).getTime() - 6 * 60 * 60 * 1000,      // 6 hours before
+            new Date(args.appointmentDate).getTime() - 3 * 60 * 60 * 1000,      // 3 hours before
+            new Date(args.appointmentDate).getTime() - 60 * 60 * 1000,          // 1 hour before
             new Date(args.appointmentDate).getTime() - 7 * 24 * 60 * 60 * 1000, // 1 week before
             new Date(args.appointmentDate).getTime() - 24 * 60 * 60 * 1000,     // 1 day before
         ];

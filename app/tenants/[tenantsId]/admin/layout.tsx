@@ -1,61 +1,30 @@
 // File: app/tenant/[tenantId]/admin/layout.tsx
-import { AdminSidebar } from '@/components/layout/AdminSidebar';
-import { AdminHeader } from '@/components/layout/AdminHeader';
+import { UserButton } from "@clerk/nextjs";
+import Link from 'next/link';
+import { ReceiptIcon } from '@/components/Icons/Icons';
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+export default function AdminLayout({ children }: readonly { children: React.ReactNode }) {
     return (
-        <div className="flex h-screen bg-gray-100">
-            <AdminSidebar />
-            <div className="flex-1 flex flex-col overflow-hidden">
-                <AdminHeader />
-                <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
-                    <div className="container mx-auto px-6 py-8">
-                        {children}
-                    </div>
-                </main>
-            </div>
+        <div className="flex flex-col min-h-screen font-geistSans">
+            <header className="bg-[#00AE98] text-primary-foreground py-4 px-6 shadow-lg">
+                <div className="container mx-auto flex items-center justify-between">
+                    <Link href="/admin" className="flex items-center gap-2 font-geistMono font-semibold">
+                        <ReceiptIcon className="h-6 w-6" />
+                        <span>Slick Solutions</span>
+                    </Link>
+                    <nav className="flex items-center gap-4">
+                        <Link href="/admin/estimates" className="hover:underline">Estimates</Link>
+                        <Link href="/admin/invoices" className="hover:underline">Invoices</Link>
+                        <Link href="/admin/transactions" className="hover:underline">Transactions</Link>
+                        <Link href="/admin/appointments" className="hover:underline">Appointments</Link>
+                        <Link href="/admin/settings" className="hover:underline">Settings</Link>
+                        <UserButton />
+                    </nav>
+                </div>
+            </header>
+            <main className="flex-1 py-8 px-6">
+                {children}
+            </main>
         </div>
     );
-}
-
-// File: app/tenant/[tenantId]/admin/page.tsx
-import { AdminDashboard } from '@/components/admin/AdminDashboard';
-
-export default function AdminHomePage() {
-    return <AdminDashboard />;
-}
-
-// File: app/tenant/[tenantId]/admin/users/page.tsx
-import { UserManagement } from '@/components/admin/UserManagement';
-
-export default function UserManagementPage() {
-    return <UserManagement />;
-}
-
-// File: app/tenant/[tenantId]/admin/settings/page.tsx
-import { TenantSettings } from '@/components/admin/TenantSettings';
-
-export default function SettingsPage() {
-    return <TenantSettings />;
-}
-
-// File: app/tenant/[tenantId]/admin/services/page.tsx
-import { ServiceManagement } from '@/components/admin/ServiceManagement';
-
-export default function ServiceManagementPage() {
-    return <ServiceManagement />;
-}
-
-// File: app/tenant/[tenantId]/admin/reports/page.tsx
-import { ReportsAndAnalytics } from '@/components/admin/ReportsAndAnalytics';
-
-export default function ReportsPage() {
-    return <ReportsAndAnalytics />;
-}
-
-// File: app/tenant/[tenantId]/admin/messages/page.tsx
-import { MessagingSystem } from '@/components/admin/MessagingSystem';
-
-export default function MessagingPage() {
-    return <MessagingSystem />;
 }

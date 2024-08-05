@@ -23,7 +23,7 @@ export function AdminSidebar() {
             <ul className="flex flex-col py-4">
                 {navItems.map((item) => (
                     <li key={item.href}>
-                        <nextLink href={item.href}>
+                        <Link href={item.href}>
                             <a
                                 className={cn(
                                     "flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800",
@@ -35,7 +35,7 @@ export function AdminSidebar() {
                                 </span>
                                 <span className="text-sm font-medium">{item.label}</span>
                             </a>
-                        </nextLink>
+                        </Link>
                     </li>
                 ))}
             </ul>

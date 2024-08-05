@@ -12,11 +12,11 @@ interface Stat {
 interface DashboardCardProps {
     title: string;
     description: string;
-    stats: ReadonlyArray<Stat>;
+    stats: readonly Stat[];
     action: string;
 }
 
-export default function DashboardCard({ title, description, stats, action }:ReadOnly =  DashboardCardProps) {
+export default function DashboardCard({ title, description, stats, action }: DashboardCardProps) {
     return (
         <Card className="bg-[#00AE98] text-primary-foreground shadow-lg hover:shadow-2xl transition-shadow duration-300">
             <CardHeader>

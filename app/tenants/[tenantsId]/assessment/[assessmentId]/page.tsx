@@ -4,4 +4,15 @@ import FileUploads from '@/components/FileUploadsComponent';
 import { VehicleAssessmentForm } from '@components/VehicleAssessmentForm';
 
 // In your page or parent component
-<VehicleDiagram />
+const VehicleAssessmentPage = () => {
+    return (
+        <div>
+            <VehicleDiagram />
+            <ServiceSelection />
+            <FileUploads />
+            <VehicleAssessmentForm />
+        </div>
+    );
+};
+
+export default VehicleAssessmentPage;

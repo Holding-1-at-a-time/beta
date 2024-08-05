@@ -1,43 +1,43 @@
-// convex/organizationRoles.ts
-import { mutation, query } from './_generated/server';
+// convex/roles.ts
+import { mutation } from './_generated/server';
 import { v } from 'convex/values';
 
-export const list = query({
-    args: { tenantId: v.id('tenants') },
+export const upsert = mutation({
+    args: {
+        id: v.string(),
+        key: v.string(),
+        name: v.string(),
+        description: v.string(),
+        permissions: v.array(v.string()),
+    },
     handler: async (ctx, args) => {
-        const { tenantId } = args;
+        const { id, key, name, description, permissions } = args;
 
-        // Fetch roles from your database based on tenantId
-        const roles = await ctx.db
+        const existingRole = await ctx.db
             .query('roles')
-            .filter(q => q.eq(q.field('tenantId'), tenantId))
-            .collect();
+            .filter(q => q.eq(q.field('id'), id))
+            .first();
 
-        return roles.map(role => ({
-            key: role.key,
-            name: role.name,
-            description: role.description,
-        }));
+        if (existingRole) {
+            await ctx.db.patch(existingRole._id, { key, name, description, permissions });
+        } else {
+            await ctx.db.insert('roles', { id, key, name, description, permissions });
+        }
     },
 });
 
-export const updateMemberRole = mutation({
-    args: {
-        tenantId: v.id('tenants'),
-        organizationId: v.string(),
-        role: v.string(),
-        isActive: v.boolean(),
-    },
+export const remove = mutation({
+    args: { id: v.string() },
     handler: async (ctx, args) => {
-        const { tenantId, organizationId, role, isActive } = args;
+        const { id } = args;
 
-        // Update the role in your database
-        await ctx.db.patch(q => q
-            .filter(q.eq(q.field('tenantId'), tenantId))
-            .filter(q.eq(q.field('organizationId'), organizationId)),
-            { [`roles.${role}`]: isActive }
-        );
+        const existingRole = await ctx.db
+            .query('roles')
+            .filter(q => q.eq(q.field('id'), id))
+            .first();
 
-        return { success: true };
+        if (existingRole) {
+            await ctx.db.delete(existingRole._id);
+        }
     },
 });

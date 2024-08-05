@@ -35,6 +35,7 @@ export const listRecent = query({
     };
   },
 });
+
 export const listInvoices = query({
     args: {},
     handler: async (ctx) => {

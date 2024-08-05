@@ -24,6 +24,7 @@ export default function RootLayout({
       <ConvexClerkProvider>
         <Analytics />
         <SpeedInsights />
+
         <html lang="en">
           <body className={`${manrope.className}`}>
             {children}

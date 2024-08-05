@@ -33,6 +33,11 @@ function Dashboard() {
   const appointments = useQuery(api.appointments.listAppointments) || [];
   const transactions = useQuery(api.transactions.getSummary) || { deposits: 0, payments: 0, refunds: 0, total: 0 };
 
+  // Helper function to safely format numbers
+  const formatCurrency = (value: number | undefined) => {
+    return typeof value === 'number' ? `$${value.toFixed(2)}` : '$0.00';
+  };
+
   return (
     <div className="flex flex-col min-h-screen font-geistSans">
       <header className="bg-[#00AE98] text-primary-foreground py-4 px-6 shadow-lg">
@@ -80,10 +85,10 @@ function Dashboard() {
             title="Transactions"
             description="View and manage your financial transactions."
             stats={[
-              { label: "Deposits", value: `$${transactions.deposits.toFixed(2)}` },
-              { label: "Payments", value: `$${transactions.payments.toFixed(2)}` },
-              { label: "Refunds", value: `$${transactions.refunds.toFixed(2)}` },
-              { label: "Total", value: `$${transactions.total.toFixed(2)}` }
+              { label: "Deposits", value: formatCurrency(transactions.deposits) },
+              { label: "Payments", value: formatCurrency(transactions.payments) },
+              { label: "Refunds", value: formatCurrency(transactions.refunds) },
+              { label: "Total", value: formatCurrency(transactions.total) }
             ]}
             action="View Transactions"
           />

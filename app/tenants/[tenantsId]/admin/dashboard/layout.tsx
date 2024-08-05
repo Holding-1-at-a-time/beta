@@ -47,7 +47,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 <div className="container mx-auto px-6 py-8">
                     <div className="flex justify-between items-center mb-4">
                         <h2 className="text-3xl font-semibold text-gray-800">
-                            {navItems.find(item => item.href === router.pathname)?.label || 'Dashboard'}
+                            {navItems.find(item => item.href === router.pathname)?.label ?? 'Dashboard'}
                         </h2>
                         <UserButton />
                     </div>

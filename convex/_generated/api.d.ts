@@ -22,6 +22,7 @@ import type * as files from "../files.js";
 import type * as followUp from "../followUp.js";
 import type * as integrations from "../integrations.js";
 import type * as invoices from "../invoices.js";
+import type * as organizationRoles from "../organizationRoles.js";
 import type * as servicePackages from "../servicePackages.js";
 import type * as services from "../services.js";
 import type * as tenants from "../tenants.js";
@@ -45,6 +46,7 @@ declare const fullApi: ApiFromModules<{
   followUp: typeof followUp;
   integrations: typeof integrations;
   invoices: typeof invoices;
+  organizationRoles: typeof organizationRoles;
   servicePackages: typeof servicePackages;
   services: typeof services;
   tenants: typeof tenants;

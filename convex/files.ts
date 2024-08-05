@@ -1,6 +1,6 @@
 // File: convex/files.ts
 
-import { mutation, action } from "./_generated/server";
+import { mutation, action, query } from "./_generated/server";
 import { v } from "convex/values";
 import { storageHelper } from "./storageHelper";
 

@@ -6,6 +6,12 @@ import { Logger } from './utils/logger';
 
 const logger = new Logger();
 
+http.route({
+    path: "/clerk-webhook",
+    method: "POST",
+    handler: handleWebhook,
+});
+
 export const processWebhook = action({
     args: {
         type: v.string(),

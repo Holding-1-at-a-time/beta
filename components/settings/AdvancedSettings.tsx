@@ -25,7 +25,7 @@ interface AdvancedSettingsProps {
     tenantId: Id<"tenants">;
 }
 
-export default function AdvancedSettings({ tenantId }: AdvancedSettingsProps) {
+export default function AdvancedSettings({ tenantId }: readonly = AdvancedSettingsProps) {
     const { toast } = useToast();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isExporting, setIsExporting] = useState(false);
@@ -56,7 +56,7 @@ export default function AdvancedSettings({ tenantId }: AdvancedSettingsProps) {
                 description: "Advanced settings updated successfully",
             });
         } catch (error) {
-            console.error('Error updating advanced settings:', error);
+            Console.error('Error updating advanced settings:', error);
             toast({
                 title: "Error",
                 description: "Failed to update advanced settings. Please try again.",
@@ -71,13 +71,29 @@ export default function AdvancedSettings({ tenantId }: AdvancedSettingsProps) {
         setIsExporting(true);
         try {
             const result = await exportData({ tenantId });
-            // Here you would typically handle the exported data, e.g., trigger a download
+            if (result) {
+                const blob = new Blob([result], {
+                    type: 'application/octet-stream',
+                });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `data-export-${tenantId}.zip`;
+                link.click();
+                URL.revokeObjectURL(url);
+            } else {
+                toast({
+                    title: "Error",
+                    description: "Failed to export data. Please try again.",
+                    variant: "destructive",
+                });
+            }
             toast({
                 title: "Success",
                 description: "Data exported successfully. Download should begin shortly.",
             });
         } catch (error) {
-            console.error('Error exporting data:', error);
+            Console.error('Error exporting data:', error);
             toast({
                 title: "Error",
                 description: "Failed to export data. Please try again.",

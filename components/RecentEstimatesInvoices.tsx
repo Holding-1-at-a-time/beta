@@ -73,7 +73,7 @@ const InvoiceCard: React.FC<{ invoice: Invoice }> = ({ invoice }) => (
     </Card>
 );
 
-export const RecentEstimatesInvoices: React.FC = () => {
+const RecentEstimatesInvoices: React.FC = () => {
     const [activeTab, setActiveTab] = useState<'estimates' | 'invoices'>('estimates');
     const [page, setPage] = useState(1);
     const { tenant } = useTenantContext();
@@ -111,10 +111,10 @@ export const RecentEstimatesInvoices: React.FC = () => {
         });
     }
 
-    const renderContent = (items: Estimate[] | Invoice[], CardComponent: React.FC<any>) => {
+    const renderContent = (items: Estimate[] | Invoice[], cardComponent: React.FC<CardProps>) => {
         if (isLoading) {
-            return Array.from({ length: PAGE_SIZE }).map((_, index) => (
-                <Skeleton key={index} className="h-[200px] w-full" />
+            return Array.from({ length: PAGE_SIZE }).map((_, invoice) => (
+                <Skeleton key={invoiceId} className="h-[200px] w-full" />
             ));
         }
 
@@ -128,7 +128,7 @@ export const RecentEstimatesInvoices: React.FC = () => {
         }
 
         return items.map((item) => (
-            <CardComponent key={item._id} {...{ [activeTab.slice(0, -1)]: item }} />
+            React.createElement(cardComponent, { key: item._id, [activeTab.slice(0, -1)]: item })
         ));
     };
 
@@ -154,5 +154,5 @@ export const RecentEstimatesInvoices: React.FC = () => {
                 onPageChange={setPage}
             />
         </Tabs>
-    );
+    )
 };

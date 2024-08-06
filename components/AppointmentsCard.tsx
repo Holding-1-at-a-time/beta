@@ -8,16 +8,16 @@ interface Appointment {
     date: string;
     service: string;
     client: string;
-    depositPaidCount: boolean;
+    isDepositPaid: boolean;
 }
 
 interface AppointmentsCardProps {
     appointments: Appointment[];
 }
 
-export default function AppointmentsCard({ appointments }: Readonly =  AppointmentsCardProps) {
+export default function AppointmentsCard({ appointments }: Readonly = AppointmentsCardProps) {
     const upcomingCount = appointments.length;
-    const depositPaidCount = appointments.filter(a => a.depositPaid).length;
+    const isDepositPaid = appointments.filter(a => a.depositPaid).length;
 
     return (
         <Card className="bg-[#00AE98] text-primary-foreground shadow-lg hover:shadow-2xl transition-shadow duration-300">
@@ -33,7 +33,7 @@ export default function AppointmentsCard({ appointments }: Readonly =  Appointme
                     </div>
                     <div className="flex flex-col gap-2">
                         <div className="font-semibold">Deposit Paid</div>
-                        <div className="text-4xl font-bold">{depositPaidCount}</div>
+                        <div className="text-4xl font-bold">{isDepositPaid}</div>
                     </div>
                 </div>
                 {appointments[0] && (
@@ -52,7 +52,7 @@ export default function AppointmentsCard({ appointments }: Readonly =  Appointme
                         </div>
                         <div>
                             <div className="font-semibold">Deposit Paid</div>
-                            <div className="text-black">{appointments[0].depositPaid ? 'Yes' : 'No'}</div>
+                            <div className="text-black">{appointments[0].isDepositPaid ? 'Yes' : 'No'}</div>
                         </div>
                     </div>
                 )}

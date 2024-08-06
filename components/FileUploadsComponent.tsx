@@ -31,9 +31,7 @@ const FileUploads: React.FC = () => {
 
         const uploadedFiles = [];
 
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-
+        for (const file of files) {
             // Validate file size and type
             if (file.size > MAX_FILE_SIZE) {
                 setUploadError(`File ${file.name} is too large. Max size is 10MB.`);
@@ -73,7 +71,7 @@ const FileUploads: React.FC = () => {
                 // Update progress
                 setUploadProgress((prevProgress) => prevProgress + (100 / files.length));
             } catch (error) {
-                console.error('Upload error:', error);
+                Console.error('Upload error:', error);
                 setUploadError(`Failed to upload ${file.name}. Please try again.`);
             }
         }

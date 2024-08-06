@@ -32,6 +32,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Install pnpm
+        run: npm install -g pnpm
+        
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -40,9 +43,6 @@ jobs:
         with:
           node-version: "20"
           cache: pnpm
-
-      - name: Install pnpm
-        run: npm install -g pnpm
       
       - name: Cache node_modules
         uses: actions/cache@v4

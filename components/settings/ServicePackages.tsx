@@ -51,7 +51,7 @@ export default function ServicePackages({ tenantId }: ServicePackagesProps) {
         control,
         name: "packages",
     });
-
+    
     const onSubmit = async (data: ServicePackagesForm) => {
         setIsSubmitting(true);
         try {
@@ -61,7 +61,7 @@ export default function ServicePackages({ tenantId }: ServicePackagesProps) {
                 description: "Service packages updated successfully",
             });
         } catch (error) {
-            console.error('Error updating service packages:', error);
+            Console.error('Error updating service packages:', error);
             toast({
                 title: "Error",
                 description: "Failed to update service packages. Please try again.",

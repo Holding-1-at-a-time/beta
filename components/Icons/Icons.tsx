@@ -139,6 +139,14 @@ export const WebcamIcon: React.FC<IconProps> = (props) => (
     </svg>
 );
 
+export const UserIcon = (props: Readonly<React.SVGProps<SVGSVGElement>>) => (
+    <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="7" r="4" />
+        <path d="M16 21v-2a4 4 0 0 0-8 0v2" />
+    </svg>
+);
+
+
 export const XIcon: React.FC<IconProps> = (props) => (
     <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M18 6 6 18" />
@@ -146,7 +154,7 @@ export const XIcon: React.FC<IconProps> = (props) => (
     </svg>
 );
 
-export function SettingsIcon(props: React.SVGProps<SVGSVGElement>) {
+export function SettingsIcon(props: Readonly <React.SVGProps<SVGSVGElement>>) {
     return (
         <svg
             {...props}

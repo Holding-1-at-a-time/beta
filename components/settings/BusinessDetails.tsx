@@ -55,7 +55,7 @@ export default function BusinessDetails({ tenantId }: BusinessDetailsProps) {
                 description: "Business details updated successfully",
             });
         } catch (error) {
-            console.error('Error updating business details:', error);
+            Console.error('Error updating business details:', error);
             toast({
                 title: "Error",
                 description: "Failed to update business details. Please try again.",

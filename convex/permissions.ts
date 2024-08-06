@@ -1,4 +1,4 @@
-// convex/roles.ts
+// convex/permissions.ts
 import { mutation } from './_generated/server';
 import { v } from 'convex/values';
 
@@ -8,20 +8,19 @@ export const upsert = mutation({
         key: v.string(),
         name: v.string(),
         description: v.string(),
-        permissions: v.array(v.string()),
     },
     handler: async (ctx, args) => {
-        const { id, key, name, description, permissions } = args;
+        const { id, key, name, description } = args;
 
-        const existingRole = await ctx.db
-            .query('roles')
+        const existingPermission = await ctx.db
+            .query('permissions')
             .filter(q => q.eq(q.field('id'), id))
             .first();
 
-        if (existingRole) {
-            await ctx.db.patch(existingRole._id, { key, name, description, permissions });
+        if (existingPermission) {
+            await ctx.db.patch(existingPermission._id, { key, name, description });
         } else {
-            await ctx.db.insert('roles', { id, key, name, description, permissions });
+            await ctx.db.insert('permissions', { id, key, name, description });
         }
     },
 });
@@ -31,13 +30,13 @@ export const remove = mutation({
     handler: async (ctx, args) => {
         const { id } = args;
 
-        const existingRole = await ctx.db
-            .query('roles')
+        const existingPermission = await ctx.db
+            .query('permissions')
             .filter(q => q.eq(q.field('id'), id))
             .first();
 
-        if (existingRole) {
-            await ctx.db.delete(existingRole._id);
+        if (existingPermission) {
+            await ctx.db.delete(existingPermission._id);
         }
     },
 });

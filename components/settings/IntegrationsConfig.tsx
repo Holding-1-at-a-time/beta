@@ -35,7 +35,7 @@ export default function IntegrationsConfig({ tenantId }: IntegrationsConfigProps
                 description: `Integration ${currentStatus ? 'disconnected' : 'connected'} successfully`,
             });
         } catch (error) {
-            console.error('Error toggling integration:', error);
+            Console.error('Error toggling integration:', error);
             toast({
                 title: "Error",
                 description: `Failed to ${currentStatus ? 'disconnect' : 'connect'} integration. Please try again.`,

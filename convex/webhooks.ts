@@ -2,7 +2,6 @@
 import { action } from './_generated/server';
 import { v } from 'convex/values';
 import { api } from './_generated/api';
-import { OrganizationMembershipSchema, RoleSchema, PermissionSchema } from './schema';
 import { Logger } from './utils/logger';
 
 const logger = new Logger();

@@ -16,7 +16,6 @@ import type {
 } from "convex/server";
 import type * as advancedSettings from "../advancedSettings.js";
 import type * as appointments from "../appointments.js";
-import type * as clerk_webhook from "../clerk-webhook.js";
 import type * as clients from "../clients.js";
 import type * as estimates from "../estimates.js";
 import type * as files from "../files.js";
@@ -33,6 +32,7 @@ import type * as services from "../services.js";
 import type * as tenants from "../tenants.js";
 import type * as transactions from "../transactions.js";
 import type * as utils_logger from "../utils/logger.js";
+import type * as utils_rateLimiter from "../utils/rateLimiter.js";
 import type * as vehicleAssessments from "../vehicleAssessments.js";
 import type * as webhooks from "../webhooks.js";
 
@@ -47,7 +47,6 @@ import type * as webhooks from "../webhooks.js";
 declare const fullApi: ApiFromModules<{
   advancedSettings: typeof advancedSettings;
   appointments: typeof appointments;
-  "clerk-webhook": typeof clerk_webhook;
   clients: typeof clients;
   estimates: typeof estimates;
   files: typeof files;
@@ -64,6 +63,7 @@ declare const fullApi: ApiFromModules<{
   tenants: typeof tenants;
   transactions: typeof transactions;
   "utils/logger": typeof utils_logger;
+  "utils/rateLimiter": typeof utils_rateLimiter;
   vehicleAssessments: typeof vehicleAssessments;
   webhooks: typeof webhooks;
 }>;

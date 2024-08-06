@@ -67,9 +67,9 @@ const handleWebhook = httpAction(async ({ runMutation, runAction }, request) => 
             throw new ConvexError("Missing CLERK_WEBHOOK_SECRET");
         }
 
-        const svix_id = headers.get('svix-id');
-        const svix_timestamp = headers.get('svix-timestamp');
-        const svix_signature = headers.get('svix-signature');
+        const svixId = headers.get('svix-id');
+        const svixTimestamp = headers.get('svix-timestamp');
+        const svixSignature = headers.get('svix-signature');
 
         if (!svix_id || !svix_timestamp || !svix_signature) {
             logger.warn("Missing svix headers");
@@ -104,13 +104,13 @@ const handleWebhook = httpAction(async ({ runMutation, runAction }, request) => 
 });
 
 http.route({
-    path: "/clerk-webhook",
+    path: "/api/clerk-webhook",
     method: "POST",
     handler: handleWebhook,
 });
 
 http.route({
-    path: "/clerk-webhook",
+    path: "/api/clerk-webhook",
     method: "OPTIONS",
     handler: httpAction(async (_, request) => {
         const headers = request.headers;

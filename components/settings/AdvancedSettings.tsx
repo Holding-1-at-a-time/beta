@@ -22,10 +22,10 @@ const advancedSettingsSchema = z.object({
 type AdvancedSettingsForm = z.infer<typeof advancedSettingsSchema>;
 
 interface AdvancedSettingsProps {
-    tenantId: Id<"tenants">;
+    readonly tenantId: Id<"tenants">;
 }
 
-export default function AdvancedSettings({ tenantId }: readonly = AdvancedSettingsProps) {
+export default function AdvancedSettings({ tenantId }: AdvancedSettingsProps) {
     const { toast } = useToast();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isExporting, setIsExporting] = useState(false);

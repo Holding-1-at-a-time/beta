@@ -72,7 +72,7 @@ export default function UserRolesManagement({ tenantId }: UserRolesManagementPro
                 description: `Role "${role.name}" has been ${isActive ? 'added' : 'removed'}.`,
             });
         } catch (error) {
-            console.error('Error updating role:', error);
+            Console.error('Error updating role:', error);
             toast({
                 title: "Error",
                 description: "Failed to update role. Please try again.",

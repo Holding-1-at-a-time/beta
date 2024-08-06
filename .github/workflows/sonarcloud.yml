@@ -5,7 +5,7 @@ on:
     branches: [main, development]
   pull_request:
     branches: [main, development]
-  workflow_dispatch:
+  workflow_dispatch: {}
 
 permissions:
   pull-requests: read # allows SonarCloud to decorate PRs with analysis results
@@ -15,13 +15,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
       - name: Analyze with SonarCloud
-        uses: SonarSource/sonarcloud-github-action@4.8.0
+        uses: SonarSource/sonarcloud-github-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
-          args:
-          Dsonar.projectKey: Holding-1-at-a-time_beta
-          Dsonar.organization: holding-1-at-a-time
-          projectBaseDir: .
-
+          args: >
+            -Dsonar.projectKey=Holding-1-at-a-time_beta
+            -Dsonar.organization=holding-1-at-a-time
+            -Dsonar.projectBaseDir=.

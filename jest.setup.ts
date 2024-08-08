@@ -5,6 +5,16 @@ import { loadEnvConfig } from '@next/env';
 import { mockAuth } from './src/mocks/auth.mock'; // We'll create this file next
 import { mockRouter } from './src/mocks/router.mock'; // We'll create this file next
 import { server } from './src/mocks/server'; // We'll create this file for MSW
+import '@testing-library/jest-dom';
+
+// Mock next/image
+jest.mock('next/image', () => ({
+  __esModule: true,
+  default: (props: any) => {
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img src={props.src} alt={props.alt} />
+  },
+}));
 
 // Load environment variables
 loadEnvConfig(process.cwd());

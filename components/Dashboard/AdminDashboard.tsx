@@ -1,5 +1,11 @@
 // components/dashboard/AdminDashboard.tsx
+'use client';
+
 import React from "react";
+import { Protect } from "@clerk/nextjs";
+
+
+
 
 interface AdminDashboardProps {
   data: {
@@ -11,7 +17,12 @@ interface AdminDashboardProps {
 
 const AdminDashboard: React.FC<AdminDashboardProps> = ({ data }) => {
   return (
-    <div className="admin-dashboard">
+    <div>
+      <Protect
+      permission="org:admin:access"
+      fallback={<p>You do not have permission to view the admin dashboard.</p>}
+    >
+          <div className="admin-dashboard"/>
       <h2 className="text-2xl font-bold mb-4">Admin Dashboard</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-white p-4 rounded shadow">
@@ -27,6 +38,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ data }) => {
           <p className="text-3xl font-bold">{data.activeAppointments}</p>
         </div>
       </div>
+        </Protect>
     </div>
   );
 };

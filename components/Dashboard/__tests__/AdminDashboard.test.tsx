@@ -2,6 +2,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import AdminDashboard from "../AdminDashboard";
+require("./jest.setup");
 
 describe("AdminDashboard", () => {
   const mockData = {

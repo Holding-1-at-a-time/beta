@@ -3,6 +3,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { useOrganization, useUser } from "@clerk/nextjs";
 import DashboardContent from "../app/dashboard/DashboardContent";
 import { OrganizationRole, UserInfo } from "../types/auth";
+require("./jest.setup");
 
 // Mock Clerk hooks
 jest.mock("@clerk/nextjs", () => ({

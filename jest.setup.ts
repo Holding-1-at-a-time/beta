@@ -1,56 +1,82 @@
-// jest.setup.ts
 import '@testing-library/jest-dom';
 import { TextEncoder, TextDecoder } from 'util';
 import { loadEnvConfig } from '@next/env';
-import { mockAuth } from './src/mocks/auth.mock'; // We'll create this file next
-import { mockRouter } from './src/mocks/router.mock'; // We'll create this file next
-import { server } from './src/mocks/server'; // We'll create this file for MSW
-import '@testing-library/jest-dom';
+import { mockAuth } from './src/mocks/auth.mock';
+import { mockRouter } from './src/mocks/router.mock';
+import { server } from './src/mocks/server';
+import { useRouter } from 'next/router';
 
-// Mock next/image
-jest.mock('next/image', () => ({
-  __esModule: true,
-  default: (props: any) => {
-    // eslint-disable-next-line @next/next/no-img-element
-    return <img src={props.src} alt={props.alt} />
-  },
-}));
+    // Mock next/image
+interface ImageProps {
+  src: string;
+  alt: string;
+}
+test('should render with correct router pathname', () => {
+    const mockRouter = {
+        pathname: '/example',
+        // other properties...
+}};
 
-// Load environment variables
-loadEnvConfig(process.cwd());
+    // Mock the useRouter hook
+    jest.mock('next/router', () => ({
+        useRouter: () => mockRouter,
+    }));
+test('should render with correct router pathname', () => {
+    const mockRouter = {
+        pathname: '/example',
+        // other properties...
+    };
 
-// Polyfill for TextEncoder and TextDecoder
-global.TextEncoder = TextEncoder;
-global.TextDecoder = TextDecoder as any;
+    // Mock the useRouter hook
+    jest.mock('next/router', () => ({
+        useRouter: () => mockRouter,
+    }));
 
-// Mock Clerk
-jest.mock('@clerk/nextjs', () => ({
-    auth: jest.fn(() => mockAuth),
-    clerkClient: {
-        users: {
-            getUser: jest.fn(),
-        },
-        organizations: {
-            getOrganization: jest.fn(),
-            getOrganizationMembership: jest.fn(),
-        },
-    },
-    useOrganization: jest.fn(),
-    useUser: jest.fn(),
-}));
+    // Your component that uses useRouter
+    const { getByText } = render <MyComponent>;
+    const element = getByText('Example Page');
+    expect(element).toBeInTheDocument();
+});
 
 // Mock Next.js router
 jest.mock('next/router', () => ({
     useRouter: jest.fn(() => mockRouter),
 }));
+return {
+        __esModule: true,
+        default: Image,
+        "test-utils": {
+            toJSON: (component: React.ReactElement) => {
+                return component.props;
+            }
+        }
+    };
+// Load environment variables
+loadEnvConfig(process.cwd());
 
-// Mock next/image
-jest.mock('next/image', () => ({
-    __esModule: true,
-    default: (props: any) => {
-        // eslint-disable-next-line @next/next/no-img-element
-        return <img { ...props } alt = { props.alt } />;
+// Polyfill for TextEncoder and TextDecoder
+global.TextEncoder = TextEncoder;
+global.TextDecoder = typeof TextDecoder;
+
+// Mock Clerk
+jest.mock('@clerk/nextjs', () => ({
+  auth: jest.fn(() => mockAuth),
+  clerkClient: {
+    users: {
+      getUser: jest.fn(),
     },
+    organizations: {
+      getOrganization: jest.fn(),
+      getOrganizationMembership: jest.fn(),
+    },
+  },
+  useOrganization: jest.fn(),
+  useUser: jest.fn(),
+}));
+
+// Mock Next.js router
+jest.mock('next/router', () => ({
+  useRouter: jest.fn(() => mockRouter),
 }));
 
 // Setup MSW
@@ -61,11 +87,7 @@ afterAll(() => server.close());
 // Global fetch mock
 global.fetch = jest.fn();
 
-// Suppress console.error and console.warn in tests
-global.console.error = jest.fn();
-global.console.warn = jest.fn();
-
 // Clean up mocks after each test
 afterEach(() => {
-    jest.clearAllMocks();
+  jest.clearAllMocks();
 });

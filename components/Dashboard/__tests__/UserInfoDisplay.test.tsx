@@ -2,6 +2,8 @@
 import { render, screen } from "@testing-library/react";
 import UserInfoDisplay from "../UserInfoDisplay";
 import { OrganizationRole } from "@/types/auth";
+require("./jest.setup");
+
 
 describe("UserInfoDisplay", () => {
   const mockUserData = {

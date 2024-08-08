@@ -18,7 +18,7 @@ type Role = {
 };
 
 interface UserRolesManagementProps {
-    tenantId: Id<"tenants">;
+    readonly tenantId: Id<"tenants">;
 }
 
 export default function UserRolesManagement({ tenantId }: UserRolesManagementProps) {

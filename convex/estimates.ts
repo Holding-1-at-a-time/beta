@@ -25,15 +25,6 @@ export const listRecent = query({
     if (!identity) {
       throw new Error("Unauthenticated");
     }
-
-    // Fetch estimates and total count in single query
-    const estimatesAndTotalCount = await ctx.db.query("estimates")
-    // Fetch total count for pagination
-    const totalCount = await ctx.db
-      .query("estimates")
-      .filter(q => q.eq(q.field("tenantId"), tenantId))
-      .count();
-
     // Fetch paginated estimates and total count
     const [estimates, totalCount] = await ctx.db
       .query("estimates")
@@ -49,19 +40,6 @@ export const listRecent = query({
   },
 });
 
-    const estimatesQuery = ctx.db
-      .query("estimates")
-      .filter(q => q.eq(q.field("tenantId"), tenantId))
-      .order("desc")
-      .paginate(page, pageSize)
-      .collectTotalCount();
-
-    const [estimates, totalCount] = await estimatesQuery;
-
-    return {
-      items: estimates,
-      totalCount,
-};
     
 // Fetch paginated estimates
 const estimates = await ctx.db
@@ -109,16 +87,6 @@ export const createEstimate = mutation({
             });
             return estimateId;
         };
-
-        export const updateEstimateStatus = mutation({
-            args: {
-                id: v.id("estimates"),
-                status: v.union(v.literal("approved"), v.literal("declined")),
-            },
-            handler: async (ctx, args) => {
-                await ctx.db.patch(args.id, { status: args.status });
-            },
-        });
 
         export const listEstimatesQuery = query({
             args: {},

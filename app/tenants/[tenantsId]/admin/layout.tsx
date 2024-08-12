@@ -5,6 +5,17 @@ import { ReceiptIcon } from '@/components/Icons/Icons';
 
 export default function AdminLayout({ children }: Readonly = { children: React.ReactNode }) {
     return (
+        <head>
+            {(process.env.NODE_ENV === "development" || process.env.VERCEL_ENV === "preview") && (
+    // eslint-disable-next-line @next/next/no-sync-scripts
+    <script
+      data-project-id="aUG31xxAN4sSBo9ff7eObKGFbkuu0QUlYEVMA8k8"
+      data-is-production-environment="false"
+      src="https://snippet.meticulous.ai/v1/meticulous.js"
+    />
+  )}
+
+            <body>
         <div className="flex flex-col min-h-screen font-geistSans">
             <header className="bg-[#00AE98] text-primary-foreground py-4 px-6 shadow-lg">
                 <div className="container mx-auto flex items-center justify-between">
@@ -26,5 +37,7 @@ export default function AdminLayout({ children }: Readonly = { children: React.R
                 {children}
             </main>
         </div>
+        </body>
+        </head>
     );
 }

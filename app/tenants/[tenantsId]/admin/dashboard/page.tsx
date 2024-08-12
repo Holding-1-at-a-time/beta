@@ -4,9 +4,8 @@
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Suspense } from 'react';
-import { SignInButton, SignedOut, UserButton } from "@clerk/nextjs";
-import Link from 'next/link';
-import DashboardCard from '@/components/DashboardCard';
+import { UserButton } from "@clerk/nextjs";
+import DashboardCard from './components/Dashboard/DashboardCard';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -26,7 +25,7 @@ function LoadingSkeleton() {
     );
 }
 
-function ErrorDisplay({ message }: { message: string }) {
+function ErrorDisplay({ message }: Readonly<{ message: string }>) {
     return (
         <Card className="bg-red-100 text-red-800">
             <CardHeader>

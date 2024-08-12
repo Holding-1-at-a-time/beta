@@ -1,4 +1,5 @@
 // File: components/FileUploadsComponent.tsx
+"use client";
 
 import React, { useState } from 'react';
 import { useFormContext } from 'react-hook-form';

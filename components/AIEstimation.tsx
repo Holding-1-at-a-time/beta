@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { useQuery, useMutation } from 'convex/react';
 import { api } from '@/convex/_generated/api';
@@ -80,7 +82,7 @@ export function AIEstimation({ vehicleDetails, selectedServices, customizations,
         <Card>
             <CardHeader>
                 <CardTitle>AI-Powered Estimation</CardTitle>
-                <CardDescription>Our AI analyzes your vehicle's condition and selected services to provide a detailed estimate.</CardDescription>
+                <CardDescription>Our AI analyzes your vehicles condition and selected services to provide a detailed estimate.</CardDescription>
             </CardHeader>
             <CardContent>
                 <div className="space-y-4">
@@ -93,7 +95,7 @@ export function AIEstimation({ vehicleDetails, selectedServices, customizations,
                             aiAnalysis ? (
                                 <p className="text-sm mt-1">{aiAnalysis.analysis}</p>
                             ) : (
-                                <p className="text-sm mt-1">No analysis available. Click "Generate Analysis" to start.</p>
+                                <p className="text-sm mt-1">No analysis available. Click Generate Analysis to start.</p>
                             )
                         )}
                     </div>
@@ -113,4 +115,5 @@ export function AIEstimation({ vehicleDetails, selectedServices, customizations,
                 </Button>
             </CardFooter>
         </Card>
-)
+    );
+}

@@ -35,9 +35,11 @@ const handleWebhook = httpAction(async ({ runAction }, request) => {
         if (!webhookSecret) {
             throw new ConvexError("Missing CLERK_WEBHOOK_SECRET");
         }
-
+        // no-dd-sa:typescript-code-style/assignment-name        
         const svix_id = headers.get('svix-id');
+        // no-dd-sa:typescript-code-style/assignment-name        
         const svix_timestamp = headers.get('svix-timestamp');
+        // no-dd-sa:typescript-code-style/assignment-name        
         const svix_signature = headers.get('svix-signature');
 
         if (!svix_id || !svix_timestamp || !svix_signature) {

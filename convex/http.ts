@@ -10,12 +10,6 @@ import { Logger } from "./utils/logger";
 
 const http = httpRouter();
 
-http.route({
-    path: "/api/clerk-webhook",
-    method: "POST",
-    handler: handleWebhook,
-});
-
 const logger = new Logger();
 const rateLimiter = new RateLimiter();
 
@@ -42,11 +36,8 @@ const handleWebhook = httpAction(async ({ runAction }, request) => {
             throw new ConvexError("Missing CLERK_WEBHOOK_SECRET");
         }
 
-        // no-dd-sa:typescript-code-style/assignment-name
         const svix_id = headers.get('svix-id');
-        // no-dd-sa:typescript-code-style/assignment-name
         const svix_timestamp = headers.get('svix-timestamp');
-        // no-dd-sa:typescript-code-style/assignment-name
         const svix_signature = headers.get('svix-signature');
 
         if (!svix_id || !svix_timestamp || !svix_signature) {
@@ -81,6 +72,11 @@ const handleWebhook = httpAction(async ({ runAction }, request) => {
     }
 });
 
-
+// Move the http.route call after the handleWebhook function is defined
+http.route({
+    path: "/api/clerk-webhook",
+    method: "POST",
+    handler: handleWebhook,
+});
 
 export default http;

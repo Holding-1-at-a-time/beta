@@ -8,11 +8,11 @@ import { api } from "@/convex/_generated/api";
 import { useQuery } from "convex/react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import DashboardCard from './components/DashboardCard';
 import AppointmentsCard from '@/components/AppointmentsCard';
 import EstimateCard from '@/components/EstimateCard';
 import InvoiceCard from '@/components/InvoiceCard';
 import { ReceiptIcon } from '@/components/Icons/Icons';
+import DashboardCard from '../../../../components/Dashboard/DashboardCard';
 
 export default function AdminDashboard() {
     return (

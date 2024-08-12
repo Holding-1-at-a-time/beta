@@ -112,8 +112,10 @@ const RecentEstimatesInvoices: React.FC = () => {
                 setError(true);
             }
         };
+
         fetchData();
-    }, [estimatesQuery, invoicesQuery]);
+    },        
+        [estimatesQuery, invoicesQuery]);
 
     useEffect(() => {
         if (error) {
@@ -170,62 +172,6 @@ const RecentEstimatesInvoices: React.FC = () => {
         </Tabs>
     )
 };
-const RecentEstimatesInvoices: React.FC = () => {
-    const [activeTab, setActiveTab] = useState<'estimates' | 'invoices'>('estimates');
-    const [page, setPage] = useState(1);
-    const { tenant } = useTenantContext();
-    const { toast } = useToast();
-
-    const PAGE_SIZE = 6;
-
-    const estimatesQuery = useQuery(api.estimates.listRecent, tenant ? {
-        tenantId: tenant._id,
-        page,
-        pageSize: PAGE_SIZE
-    } : null);
-
-    const invoicesQuery = useQuery(api.invoices.listRecent, tenant ? {
-        tenantId: tenant._id,
-        page,
-        pageSize: PAGE_SIZE
-    } : null);
-
-    const isLoading = estimatesQuery === undefined || invoicesQuery === undefined;
-    const error = estimatesQuery instanceof Error ? estimatesQuery : invoicesQuery instanceof Error ? invoicesQuery : null;
-
-    const estimates = estimatesQuery && !(estimatesQuery instanceof Error) ? estimatesQuery.items : [];
-    const invoices = invoicesQuery && !(invoicesQuery instanceof Error) ? invoicesQuery.items : [];
-
-    let totalPages;
-    if (activeTab === 'estimates') {
-        if (estimatesQuery && !(estimatesQuery instanceof Error)) {
-            totalPages = Math.ceil(estimatesQuery.totalCount / PAGE_SIZE);
-        } else {
-            totalPages = 1;
-        }
-    } else {
-        if (invoicesQuery && !(invoicesQuery instanceof Error)) {
-            totalPages = Math.ceil(invoicesQuery.totalCount / PAGE_SIZE);
-        } else {
-            totalPages = 1;
-        }
-    }
-    const totalPages = activeTab === 'estimates'
-        ? estimatesQuery && !(estimatesQuery instanceof Error)
-            ? Math.ceil(estimatesQuery.totalCount / PAGE_SIZE)
-            : 1
-        : invoicesQuery && !(invoicesQuery instanceof Error)
-            ? Math.ceil(invoicesQuery.totalCount / PAGE_SIZE)
-            : 1;
-
-    if (error) {
-        toast({
-            title: "Error",
-            description: "Failed to fetch data. Please try again.",
-            variant: "destructive",
-        });
-    }
-
     const renderContent = (items: Estimate[] | Invoice[], cardComponent: React.FC<CardProps>) => {
         if (isLoading) {
             return Array.from({ length: PAGE_SIZE }).map((_, invoice) => (
@@ -245,29 +191,4 @@ const RecentEstimatesInvoices: React.FC = () => {
         return items.map((item) => (
             React.createElement(cardComponent, { key: item._id, [activeTab.slice(0, -1)]: item })
         ));
-    };
-
-    return (
-        <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as 'estimates' | 'invoices')} className="w-full">
-            <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="estimates">Recent Estimates</TabsTrigger>
-                <TabsTrigger value="invoices">Recent Invoices</TabsTrigger>
-            </TabsList>
-            <TabsContent value="estimates">
-                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                    {renderContent(estimates, EstimateCard)}
-                </div>
-            </TabsContent>
-            <TabsContent value="invoices">
-                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                    {renderContent(invoices, InvoiceCard)}
-                </div>
-            </TabsContent>
-            <Pagination
-                currentPage={page}
-                totalPages={totalPages}
-                onPageChange={setPage}
-            />
-        </Tabs>
-    )
-};
+    }

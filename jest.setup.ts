@@ -4,53 +4,54 @@ import { loadEnvConfig } from '@next/env';
 import { mockAuth } from './src/mocks/auth.mock';
 import { mockRouter } from './src/mocks/router.mock';
 import { server } from './src/mocks/server';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
-    // Mock next/image
+// Mock next/image
 interface ImageProps {
   src: string;
   alt: string;
 }
 test('should render with correct router pathname', () => {
-    const mockRouter = {
-        pathname: '/example',
-        // other properties...
-}};
+  const mockRouter = {
+    pathname: '/example',
+    // other properties...
+  }
+};
 
-    // Mock the useRouter hook
-    jest.mock('next/router', () => ({
-        useRouter: () => mockRouter,
-    }));
+// Mock the useRouter hook
+jest.mock('next/navigation', () => ({
+  useRouter: () => mockRouter,
+}));
 test('should render with correct router pathname', () => {
-    const mockRouter = {
-        pathname: '/example',
-        // other properties...
-    };
+  const mockRouter = {
+    pathname: '/example',
+    // other properties...
+  };
 
-    // Mock the useRouter hook
-    jest.mock('next/router', () => ({
-        useRouter: () => mockRouter,
-    }));
+  // Mock the useRouter hook
+  jest.mock('next/navigation', () => ({
+    useRouter: () => mockRouter,
+  }));
 
-    // Your component that uses useRouter
-    const { getByText } = render <MyComponent>;
-    const element = getByText('Example Page');
-    expect(element).toBeInTheDocument();
+  // Your component that uses useRouter
+  const { getByText } = render<MyComponent>;
+  const element = getByText('Example Page');
+  expect(element).toBeInTheDocument();
 });
 
 // Mock Next.js router
-jest.mock('next/router', () => ({
-    useRouter: jest.fn(() => mockRouter),
+jest.mock('next/navigation', () => ({
+  useRouter: jest.fn(() => mockRouter),
 }));
 return {
-        __esModule: true,
-        default: Image,
-        "test-utils": {
-            toJSON: (component: React.ReactElement) => {
-                return component.props;
-            }
-        }
-    };
+  __esModule: true,
+  default: Image,
+  "test-utils": {
+    toJSON: (component: React.ReactElement) => {
+      return component.props;
+    }
+  }
+};
 // Load environment variables
 loadEnvConfig(process.cwd());
 
@@ -75,7 +76,7 @@ jest.mock('@clerk/nextjs', () => ({
 }));
 
 // Mock Next.js router
-jest.mock('next/router', () => ({
+jest.mock('next/navigation', () => ({
   useRouter: jest.fn(() => mockRouter),
 }));
 

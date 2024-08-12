@@ -5,11 +5,11 @@ import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Suspense } from 'react';
 import { UserButton } from "@clerk/nextjs";
-import DashboardCard from './components/Dashboard/DashboardCard';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { RecentEstimatesInvoices } from '@/components/RecentEstimatesInvoices';
+import DashboardCard from '../../../../../components/Dashboard/DashboardCard';
 
 
 function formatCurrency(value: number | undefined): string {

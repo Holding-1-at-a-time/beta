@@ -86,6 +86,6 @@ export const createEstimate = mutation({
                 createdAt: new Date().toISOString(),
             });
             return estimateId;
-        },
-    },
-})
+        }
+    }
+});
